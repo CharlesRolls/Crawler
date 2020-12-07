@@ -1,0 +1,34 @@
+spring:
+  main:
+    banner-mode: "off"
+
+logging:
+  file:
+    name: ${crawler.outputPath}\Crawler-Test.log
+    max-history: 1
+    max-size: 5MB
+  level:
+    com.rolls: DEBUG
+
+crawler:
+  # Starting URL.
+  startingUrl: https://wiprodigital.com
+#  startingUrl: https://www.crawler-test.com/
+
+  # Output path for logs and result file.
+  outputPath: C:\Rolls\Dad\Dev\Sample\crawler\output
+
+  # Filename to place results in.
+  resultFile: Crawler-Test-Result.txt
+
+  # Number of threads to use.
+  numThreads: 4
+
+  # Interval, in milliseconds, to raise progress event.  Value <= 0 means disable.
+  progressIntervalMillis: 3000
+
+  # Timeout, in milliseconds, for a page to load and parse.  Value <= 0 means no timeout.
+  parseTimeoutMillis: 2000
+
+  # Timeout, in seconds, for entire crawl to complete.
+  crawlTimeoutSeconds: 15
