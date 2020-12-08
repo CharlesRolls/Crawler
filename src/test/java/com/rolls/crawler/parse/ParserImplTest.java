@@ -1,4 +1,4 @@
-package com.rolls.crawler.parser;
+package com.rolls.crawler.parse;
 
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.anyOf;
@@ -20,6 +20,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import com.rolls.crawler.parse.PageDetails;
+import com.rolls.crawler.parse.Parser;
+import com.rolls.crawler.parse.ParserImpl;
 
 @SuppressWarnings("javadoc")
 public class ParserImplTest

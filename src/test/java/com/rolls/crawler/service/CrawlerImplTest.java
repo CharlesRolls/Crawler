@@ -17,7 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Test;
-import com.rolls.crawler.parser.ParserImpl;
+import com.rolls.crawler.parse.ParserImpl;
 
 @SuppressWarnings("javadoc")
 public class CrawlerImplTest

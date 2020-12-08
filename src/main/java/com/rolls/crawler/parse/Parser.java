@@ -1,4 +1,4 @@
-package com.rolls.crawler.parser;
+package com.rolls.crawler.parse;
 
 /**
  * API to web page parser functionality.

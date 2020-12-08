@@ -1,4 +1,4 @@
-package com.rolls.crawler.parser;
+package com.rolls.crawler.parse;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -6,8 +6,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Implementation of web page parser.  Reads imports (HTML link tag), links (HTML a tag),
@@ -15,8 +13,6 @@ import org.slf4j.LoggerFactory;
  */
 public class ParserImpl implements Parser
 {
-   private final static Logger logger = LoggerFactory.getLogger(ParserImpl.class);
-
    private final int timeoutMillis;
 
    /**
@@ -40,8 +36,7 @@ public class ParserImpl implements Parser
       }
       catch (Exception ex)
       {
-         logger.debug(String.format("Error loading URL: %s", url), ex);
-         details.setLoadError(String.format("Unable to load.  CAUSE: %s", ex.getMessage()));
+         details.setLoadError(String.format("Unable to load %s.  CAUSE: %s", url, ex.toString()));
          return details;
       }
 

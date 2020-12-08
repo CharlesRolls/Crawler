@@ -17,9 +17,9 @@ import java.util.function.Consumer;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.rolls.crawler.parser.LinkDetails;
-import com.rolls.crawler.parser.PageDetails;
-import com.rolls.crawler.parser.Parser;
+import com.rolls.crawler.parse.LinkDetails;
+import com.rolls.crawler.parse.PageDetails;
+import com.rolls.crawler.parse.Parser;
 
 /**
  * Implementation of a web crawler that finds pages of a single domain.

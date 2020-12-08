@@ -1,4 +1,4 @@
-package com.rolls.crawler.parser;
+package com.rolls.crawler.parse;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
-import com.rolls.crawler.parser.LinkDetails;
-import com.rolls.crawler.parser.PageDetails;
-import com.rolls.crawler.parser.Parser;
+import com.rolls.crawler.parse.LinkDetails;
+import com.rolls.crawler.parse.PageDetails;
+import com.rolls.crawler.parse.Parser;
 
 class TestParser implements Parser
 {

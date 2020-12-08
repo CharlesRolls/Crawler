@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import com.rolls.crawler.parser.ParserImpl;
+import com.rolls.crawler.parse.ParserImpl;
 import com.rolls.crawler.report.ReportDetails;
 import com.rolls.crawler.report.ReportPage;
 import com.rolls.crawler.report.ReportWriter;
