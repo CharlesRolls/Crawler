@@ -25,7 +25,7 @@ public class ReportWriterImplTest
 
    @BeforeEach
    @AfterEach
-   private void deletePTestPath() throws IOException
+   private void deleteTestPath() throws IOException
    {
       File pathFile = new File(testPath);
       if (pathFile.exists())
@@ -195,7 +195,7 @@ public class ReportWriterImplTest
       rpt1.setStartingUrl("http://www.one.com");
       rpt1.setStartTime(new Date(curTime - (10 * 60 * 1000)));
       rpt1.setDurationMillis(15 * 1000);
-      rpt1.setCanceled(true);
+      rpt1.setCancelled(true);
       rpt1.setPages(new LinkedList<ReportPage>());
 
       StringBuilder strBld = new StringBuilder();

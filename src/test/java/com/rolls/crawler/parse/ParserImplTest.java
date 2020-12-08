@@ -33,7 +33,7 @@ public class ParserImplTest
       Parser parser = new ParserImpl(-1);
       PageDetails details = parser.parse("http://www.notrealsite.org/somepagethatdoesnotexist.html");
       assertThat(details, allOf(
-            hasProperty("loadError", startsWith("Unable to load.  CAUSE: ")),
+            hasProperty("loadError", startsWith("Unable to load http://www.notrealsite.org/somepagethatdoesnotexist.html.  CAUSE: ")),
             hasProperty("title", anyOf(nullValue(), empty())),
             hasProperty("imports", anyOf(nullValue(), empty())),
             hasProperty("links", anyOf(nullValue(), empty())),

@@ -25,10 +25,10 @@ crawler:
   numThreads: 4
 
   # Interval, in milliseconds, to raise progress event.  Value <= 0 means disable.
-  progressIntervalMillis: 3000
+  progressIntervalMillis: 500
 
   # Timeout, in milliseconds, for a page to load and parse.  Value <= 0 means no timeout.
   parseTimeoutMillis: 2000
 
   # Timeout, in seconds, for entire crawl to complete.
-  crawlTimeoutSeconds: 15
+  crawlTimeoutSeconds: 5

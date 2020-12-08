@@ -30,7 +30,7 @@ public class CrawlerImpl implements Crawler
     */
    public final static int MIN_THREADS = 1;
 
-   final static Logger logger = LoggerFactory.getLogger(CrawlerImpl.class);
+   private final static Logger logger = LoggerFactory.getLogger(CrawlerImpl.class);
 
    private final Queue<CrawlObserver> observers = new ConcurrentLinkedQueue<>();
    private final int numThreads;
@@ -51,7 +51,7 @@ public class CrawlerImpl implements Crawler
       private final Set<String> urls = new HashSet<>();
       private int urlsRequested = 0;
       private int urlsProcessed = 0;
-      private boolean canceled = false;
+      private boolean cancelled = false;
       private boolean complete = false;
 
       public Worker(String hostUrl)
@@ -89,7 +89,7 @@ public class CrawlerImpl implements Crawler
        */
       public boolean cancel()
       {
-         canceled = true;
+         cancelled = true;
          executor.shutdownNow();
 
          try
@@ -125,12 +125,22 @@ public class CrawlerImpl implements Crawler
       }
 
       /**
-       * Returns if the crawl has been canceled.
-       * @return True if canceled.
+       * Crawls a list of web pages.
+       * @param urls URLs to crawl.
        */
-      public boolean isCanceled()
+      public synchronized void crawlPages(List<String> urls)
       {
-         return canceled;
+         if (urls != null && !urls.isEmpty())
+            urls.forEach((url) -> crawlPage(url));
+      }
+
+      /**
+       * Returns if the crawl has been cancelled.
+       * @return True if cancelled.
+       */
+      public boolean isCancelled()
+      {
+         return cancelled;
       }
 
       /**
@@ -138,7 +148,7 @@ public class CrawlerImpl implements Crawler
        * @param url URL to check.
        * @return True if domain URL.
        */
-      boolean isDomainUrl(String url)
+      public boolean isDomainUrl(String url)
       {
          return (url.toLowerCase().startsWith(hostUrl));
       }
@@ -167,7 +177,7 @@ public class CrawlerImpl implements Crawler
          complete = true;
          executor.shutdown();
 
-         observers.stream().forEach((observer) -> observer.onComplete(startTime, durationMillis, canceled));
+         observers.stream().forEach((observer) -> observer.onComplete(startTime, durationMillis, cancelled));
 
          // Delete the current worker from the outer class.
          worker = null;
@@ -198,7 +208,7 @@ public class CrawlerImpl implements Crawler
          try
          {
             PageDetails pageDetails = parser.parse(url);
-            if (worker.isCanceled())
+            if (worker.isCancelled())
                return;
 
             CrawlPage crawlPage = buildCrawlPage(url, pageDetails);
@@ -207,12 +217,14 @@ public class CrawlerImpl implements Crawler
             Set<LinkDetails> links = pageDetails.getLinks();
             if (links != null && !links.isEmpty())
             {
+               List<String> domainLinks = new LinkedList<>();
                for (LinkDetails link : links)
                {
                   String linkUrl = link.getUrl();
                   if (worker.isDomainUrl(linkUrl))
-                     worker.crawlPage(linkUrl);
+                     domainLinks.add(linkUrl);
                }
+               worker.crawlPages(domainLinks);
             }
 
             if (worker.pageProcessed())
@@ -297,6 +309,7 @@ public class CrawlerImpl implements Crawler
       this.parser = parser;
    }
 
+   @Override
    public void addObserver(CrawlObserver observer)
    {
       if (observer == null)

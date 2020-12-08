@@ -15,6 +15,6 @@ public class ReportDetails
    private String startingUrl;
    private Date startTime;
    private long durationMillis;
-   private boolean canceled;
+   private boolean cancelled;
    private List<ReportPage> pages;
 }

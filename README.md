@@ -20,7 +20,7 @@ a bat file to run it and an application.yml file that hold the configuration pro
 
  * ```cd <project location>/release```
  * ```Update application.yml with the desired setting```
- * ```Run Crawl.bat or java -jar crawler-<version>.jar```
+ * ```Run Crawl.bat or java -jar crawler-<version>.jar``'  (Assumes java location in your path)
 
 ## Notes
 1. The domain is the base URL of the initially scanned page.  It will NOT cross protocol boundaries.
@@ -36,10 +36,6 @@ area could be done as well.<br/><br/>
 as a sample application.  The internal class implementations and packaging follows normal separation of
 code principles allowing for easy repackaging into individual artifacts.<br/><br/>
 
-## Enhancements
-1. For time constraints and the fact that this is a sample, I have the CrawlerImpl storing the page information
-to be reported.  The WebCrawler waits for the Crawler to complete, gets the information and uses the ReportWriter
-to save the details to a file.  This should be changed so that the Crawler reports every page thru its EventHandler
-and the WebCrawler should be turned into a WebCrawlerFileReoprter that stores the pages and report details and when
-crawling is complete, it saves to a file.  This way I could make additional WebCrawlerXXX implementations that could
-do things like store pages to a DB, stream crawl results to the web, etc.
+4. There are timing tests that could fail depending on the site that is used and network speeds.
+The limits set in the tests are very strict about expected durations.  Duration limits may need
+to be adjusted accordingly.

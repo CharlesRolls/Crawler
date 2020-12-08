@@ -2,13 +2,12 @@ spring:
   main:
     banner-mode: "off"
 
-logging.file:  ${crawler.outputPath}\Crawler-Site.log
 logging:
   file:
+    name: ${crawler.outputPath}\Crawler-Site.log
     max-history: 1
     max-size: 5MB
   level:
-    root: WARN
     com.rolls: ERROR
 
 crawler:
@@ -16,7 +15,7 @@ crawler:
   startingUrl: https://wiprodigital.com
 
   # Output path for logs and result file.
-  outputPath: C:\Rolls\crawler\output
+  outputPath: C:\Rolls\crawler
 
   # Filename to place results in.
   resultFile: Crawler-Site-Result.txt

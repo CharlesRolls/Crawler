@@ -96,7 +96,7 @@ public class ReportWriterImpl implements ReportWriter
       writer.newLine();
 
       writer.write(String.format("Duration: %.2f minutes", (double)reportDetails.getDurationMillis() / (double)1000 / (double)60));
-      if (reportDetails.isCanceled())
+      if (reportDetails.isCancelled())
          writer.write(" - CANCELLED !!!");
       writer.newLine();
    }
