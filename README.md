@@ -39,3 +39,13 @@ code principles allowing for easy repackaging into individual artifacts.<br/><br
 4. There are timing tests that could fail depending on the site that is used and network speeds.
 The limits set in the tests are very strict about expected durations.  Duration limits may need
 to be adjusted accordingly.
+
+## Interesting Points
+1. The threading and synchronization in the CrawlImpl class is of note.  It uses minimal synchronization
+to handle multi-threading and has a nice design of encapsulation.<br/><br/>
+
+2. Almost all code has been unit tested.  The CLIApplication is the only class that does not have a unit
+test because it is a minimal wrapper class to call the main functionality in the service.  This could be
+tested as well, but it is not worth the time for this sample.  Code coverage is around 95% for each package.
+The only things that have NOT been covered are some Lombok internals and some almost unreachable code.
+
